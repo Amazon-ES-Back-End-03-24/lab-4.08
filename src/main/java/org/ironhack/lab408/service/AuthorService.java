@@ -1,9 +1,7 @@
 package org.ironhack.lab408.service;
 
-import jakarta.validation.Valid;
 import org.ironhack.lab408.dtos.AuthorDTO;
 import org.ironhack.lab408.model.Author;
-import org.ironhack.lab408.model.BlogPost;
 import org.ironhack.lab408.repository.AuthorRepository;
 import org.ironhack.lab408.repository.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;

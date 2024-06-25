@@ -10,4 +10,6 @@ import java.util.List;
 public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
 
     List<BlogPost> findByAuthorId(Long id);
+
+    List<BlogPost> findByUserUsername(String username);
 }

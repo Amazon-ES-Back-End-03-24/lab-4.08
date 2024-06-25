@@ -1,5 +1,6 @@
 package org.ironhack.lab408.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,12 +22,16 @@ public class BlogPost {
     @ManyToOne
     private Author author;
 
+    @ManyToOne
+    @JsonIgnore
+    private User user;
+
     public BlogPost(String title, String post) {
         this.title = title;
         this.post = post;
     }
 
-    public BlogPost(Author author,String title, String post) {
+    public BlogPost(Author author, String title, String post) {
         this.author = author;
         this.title = title;
         this.post = post;

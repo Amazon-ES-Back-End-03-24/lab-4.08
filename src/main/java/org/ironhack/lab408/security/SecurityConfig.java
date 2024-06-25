@@ -88,7 +88,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/authors/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_CONTRIBUTOR")
                 .requestMatchers(HttpMethod.DELETE, "/blogposts/**").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/authors/**").hasAnyAuthority("ROLE_ADMIN")
-                .anyRequest().permitAll()); // any other endpoints require authentication
+                .requestMatchers(HttpMethod.PATCH, "/blogposts/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_CONTRIBUTOR")
+                .requestMatchers(HttpMethod.GET, "/blogposts/favourite").hasAnyAuthority("ROLE_ADMIN", "ROLE_CONTRIBUTOR")
+                .anyRequest().permitAll()); // any other endpoints DON'T require authentication
 
         // add the custom authentication filter to the http security object
         http.addFilter(customAuthenticationFilter);

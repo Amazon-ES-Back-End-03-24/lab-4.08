@@ -37,8 +37,8 @@ public class Application {
             Role role1 = userService.saveRole(new Role(null, "ROLE_CONTRIBUTOR"));
             Role role2 = userService.saveRole(new Role(null, "ROLE_ADMIN"));
 
-            userService.saveUser(new User(null, "John Doe", "john", "1234", List.of(role1)));
-            userService.saveUser(new User(null, "Jane Doe", "jane", "1234", List.of(role2)));
+            userService.saveUser(new User(null, "John Doe", "john", "1234", List.of(role1), null));
+            userService.saveUser(new User(null, "Jane Doe", "jane", "1234", List.of(role2), null));
 
             Author author1 = authorService.store(new AuthorDTO("Aiko Tanaka"));
             Author author2 = authorService.store(new AuthorDTO("Jonas Schmidt"));

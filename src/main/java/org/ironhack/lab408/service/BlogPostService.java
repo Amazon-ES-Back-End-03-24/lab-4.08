@@ -3,13 +3,16 @@ package org.ironhack.lab408.service;
 import org.ironhack.lab408.dtos.BlogPostDTO;
 import org.ironhack.lab408.model.Author;
 import org.ironhack.lab408.model.BlogPost;
+import org.ironhack.lab408.model.User;
 import org.ironhack.lab408.repository.AuthorRepository;
 import org.ironhack.lab408.repository.BlogPostRepository;
+import org.ironhack.lab408.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +23,9 @@ public class BlogPostService {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public BlogPost findById(Long id) {
         Optional<BlogPost> blogPost = blogPostRepository.findById(id);
@@ -71,5 +77,24 @@ public class BlogPostService {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "BlogPost id not found");
         }
+    }
+
+    public void favouritePost(long id, String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Username doesn't exist in DB");
+        }
+        Optional<BlogPost> blogPost = blogPostRepository.findById(id);
+
+        if (blogPost.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "BlogPost id not found");
+        }
+
+        blogPost.get().setUser(user);
+        blogPostRepository.save(blogPost.get());
+    }
+
+    public List<BlogPost> findByUsername(String username) {
+        return blogPostRepository.findByUserUsername(username);
     }
 }

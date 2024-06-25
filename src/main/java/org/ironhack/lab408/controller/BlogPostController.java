@@ -6,7 +6,11 @@ import org.ironhack.lab408.model.BlogPost;
 import org.ironhack.lab408.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class BlogPostController {
@@ -39,4 +43,35 @@ public class BlogPostController {
         blogPostService.delete(id);
     }
 
+    @PatchMapping("/blogposts/{id}/favourite")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void favouritePost(@PathVariable long id) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        System.out.println("LOGGED USER  " + username);
+        blogPostService.favouritePost(id, username);
+    }
+
+    @GetMapping("/blogposts/favourite")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BlogPost> findByUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        System.out.println("LOGGED USER  " + username);
+        return blogPostService.findByUsername(username);
+    }
 }
