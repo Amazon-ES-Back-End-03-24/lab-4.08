@@ -23,7 +23,7 @@ public class BlogPost {
     private Author author;
 
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     private User user;
 
     public BlogPost(String title, String post) {

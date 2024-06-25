@@ -1,5 +1,6 @@
 package org.ironhack.lab408.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,5 +35,6 @@ public class User {
     private Collection<Role> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<BlogPost> favouritePosts;
 }
