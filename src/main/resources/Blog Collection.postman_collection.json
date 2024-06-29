@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "796fe593-c7d2-4ce0-a9cc-5c3bab31dcfe",
+		"name": "Blog Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21489776"
+	},
+	"item": [
+		{
+			"name": "User Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"jane\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Blog Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW5lIiwiZXhwIjoxNzE5MDUxMTQxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.2FlncWL3l-oQvebH30ND9ZsDMaRM3wdH_WFBZVZO354"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Title\",\n    \"post\": \"Blabla\",\n    \"authorId\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/"
+			},
+			"response": []
+		},
+		{
+			"name": "Author",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW5lIiwiZXhwIjoxNzE5MDU2MjQzLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.Jsrm3t2VbEsHyTBkIObNm31MIkuEk4FCdUEjobxbTls"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Author\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/authors"
+			},
+			"response": []
+		},
+		{
+			"name": "Blog Post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/blogposts/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Favourite Blog Posts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW5lIiwiZXhwIjoxNzE5MzMwMzYyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.W6FcqTt072P4RBE2GhwE26mYfbAAELUObigCab6XE48"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/blogposts/favourite"
+			},
+			"response": []
+		},
+		{
+			"name": "Author",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/authors/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Blog Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW5lIiwiZXhwIjoxNzE5MDUxMTQxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.2FlncWL3l-oQvebH30ND9ZsDMaRM3wdH_WFBZVZO354"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test\",\n    \"post\": \"test\",\n    \"authorId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/blogposts/4"
+			},
+			"response": []
+		},
+		{
+			"name": "Author",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW5lIiwiZXhwIjoxNzE5MDUxMTQxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.2FlncWL3l-oQvebH30ND9ZsDMaRM3wdH_WFBZVZO354"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Author test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/authors/4"
+			},
+			"response": []
+		},
+		{
+			"name": "Blog Post Favourite",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW5lIiwiZXhwIjoxNzE5MzMwMzYyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.W6FcqTt072P4RBE2GhwE26mYfbAAELUObigCab6XE48"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/blogposts/3/favourite"
+			},
+			"response": []
+		}
+	]
+}
